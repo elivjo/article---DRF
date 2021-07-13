@@ -3,12 +3,9 @@ info:
   title: Your Project
   version: 1.0.0
   description: "API for all things \u2026"
-  x-tagGroups:
-  - name: api
-    tags:
-      - listArticleLists
-      - createArticleList
-
+  x-logo:
+    url: 'https://redocly.github.io/redoc/petstore-logo.png'
+    altText: Petstore logo
 paths:
   /api/articleapp/articles/:
     get:
