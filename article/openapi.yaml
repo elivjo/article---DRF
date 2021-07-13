@@ -4,7 +4,7 @@ info:
   version: 1.0.0
   description: "API for all things \u2026"
    x-logo:
-    url: "./images/download.jpg"
+    url: "article/images/download.jpg"
     backgroundColor: "#FFFFFF"
     altText: "Petstore logo"
 paths:
