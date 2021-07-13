@@ -3,6 +3,10 @@ info:
   title: Article API
   version: 1.0.0
   description: "API for all things \u2026"
+   x-logo:
+    url: "./images/download.jpg"
+    backgroundColor: "#FFFFFF"
+    altText: "Petstore logo"
 paths:
   /api/articleapp/articles/:
     get:
