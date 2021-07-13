@@ -459,14 +459,6 @@ paths:
       tags:
       - api
   /api2/articleapp/artikull/:
-x-tagGroups:
-  - name: Article
-    tags:
-      - article
-
-  - name: User Management
-
-
     get:
       operationId: listArticles
       description: ''
