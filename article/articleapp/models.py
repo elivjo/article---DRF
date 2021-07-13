@@ -1,7 +1,6 @@
 from django.db import models
 
 
-from django.db import models
 from django.contrib.auth.models import User
 
 
@@ -55,6 +54,7 @@ class Article(models.Model):
         ordering = ['-create_date']
 
     def __str__(self):
+
         return self.title
 
 
@@ -77,9 +77,16 @@ class Comment(models.Model):
     parent = models.ForeignKey('self', on_delete=models.SET_NULL,  null= True, blank=True)
 
     objects = CommentManager()
-   
+    
+    class Meta:
+        ordering = ['-create_date']
+
+
     def __str__(self):
-        return self.content[:20] + "..."
+        len_content = 20
+        if len(self.content)>len_content:
+            return self.content[:len_content] + '...' 
+        return self.content
 
 
     def children(self):

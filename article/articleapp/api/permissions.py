@@ -1,5 +1,5 @@
 from rest_framework import permissions
-from articleapp.models import Article
+from articleapp.models import Article,Comment
 
 
 class AuthorPermission(permissions.BasePermission):
@@ -10,3 +10,4 @@ class AuthorPermission(permissions.BasePermission):
         elif request.method in permissions.SAFE_METHODS: 
             return True
         return False
+
