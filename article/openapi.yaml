@@ -5,6 +5,14 @@ info:
   description: "API for all things \u2026"
 paths:
   /api/articleapp/articles/:
+  x-tagGroups:
+  - name: Article
+    tags:
+      - pet
+      - store
+  - name: Comment
+    tags:
+      - user
     get:
       operationId: listArticleLists
       description: ''
