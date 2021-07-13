@@ -1,0 +1,731 @@
+openapi: 3.0.2
+info:
+  title: Your Project
+  version: 1.0.0
+  description: "API for all things \u2026"
+paths:
+  /api/articleapp/articles/:
+    get:
+      operationId: listArticleLists
+      description: ''
+      parameters:
+      - name: page
+        required: false
+        in: query
+        description: A page number within the paginated result set.
+        schema:
+          type: integer
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  count:
+                    type: integer
+                    example: 123
+                  next:
+                    type: string
+                    nullable: true
+                    format: uri
+                    example: http://api.example.org/accounts/?page=4
+                  previous:
+                    type: string
+                    nullable: true
+                    format: uri
+                    example: http://api.example.org/accounts/?page=2
+                  results:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/ArticleList'
+          description: ''
+      tags:
+      - api
+    post:
+      operationId: createArticleList
+      description: ''
+      parameters: []
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ArticleList'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/ArticleList'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/ArticleList'
+      responses:
+        '201':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ArticleList'
+          description: ''
+      tags:
+      - api
+  /api/articleapp/articles/{id}/:
+    get:
+      operationId: retrieveArticle
+      description: ''
+      parameters:
+      - name: id
+        in: path
+        required: true
+        description: A unique integer value identifying this article.
+        schema:
+          type: string
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Article'
+          description: ''
+      tags:
+      - api
+    put:
+      operationId: updateArticle
+      description: ''
+      parameters:
+      - name: id
+        in: path
+        required: true
+        description: A unique integer value identifying this article.
+        schema:
+          type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Article'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/Article'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/Article'
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Article'
+          description: ''
+      tags:
+      - api
+    patch:
+      operationId: partialUpdateArticle
+      description: ''
+      parameters:
+      - name: id
+        in: path
+        required: true
+        description: A unique integer value identifying this article.
+        schema:
+          type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Article'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/Article'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/Article'
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Article'
+          description: ''
+      tags:
+      - api
+    delete:
+      operationId: destroyArticle
+      description: ''
+      parameters:
+      - name: id
+        in: path
+        required: true
+        description: A unique integer value identifying this article.
+        schema:
+          type: string
+      responses:
+        '204':
+          description: ''
+      tags:
+      - api
+  /api/articleapp/articles/{id}/like:
+    get:
+      operationId: listArticles
+      description: ''
+      parameters:
+      - name: id
+        in: path
+        required: true
+        description: A unique integer value identifying this article.
+        schema:
+          type: string
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                type: array
+                items: {}
+          description: ''
+      tags:
+      - api
+  /api/articleapp/comments/:
+    get:
+      operationId: listComments
+      description: ''
+      parameters:
+      - name: page
+        required: false
+        in: query
+        description: A page number within the paginated result set.
+        schema:
+          type: integer
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  count:
+                    type: integer
+                    example: 123
+                  next:
+                    type: string
+                    nullable: true
+                    format: uri
+                    example: http://api.example.org/accounts/?page=4
+                  previous:
+                    type: string
+                    nullable: true
+                    format: uri
+                    example: http://api.example.org/accounts/?page=2
+                  results:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/CommentList'
+          description: ''
+      tags:
+      - api
+    post:
+      operationId: createComment
+      description: ''
+      parameters: []
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CommentList'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/CommentList'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/CommentList'
+      responses:
+        '201':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CommentList'
+          description: ''
+      tags:
+      - api
+  /api/articleapp/articles/{article_pk}/comments/{id}/:
+    get:
+      operationId: retrieveComment
+      description: detajet , fshirja e komentit
+      parameters:
+      - name: article_pk
+        in: path
+        required: true
+        description: ''
+        schema:
+          type: string
+      - name: id
+        in: path
+        required: true
+        description: A unique integer value identifying this comment.
+        schema:
+          type: string
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CommentDetail'
+          description: ''
+      tags:
+      - api
+    put:
+      operationId: updateComment
+      description: detajet , fshirja e komentit
+      parameters:
+      - name: article_pk
+        in: path
+        required: true
+        description: ''
+        schema:
+          type: string
+      - name: id
+        in: path
+        required: true
+        description: A unique integer value identifying this comment.
+        schema:
+          type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CommentDetail'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/CommentDetail'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/CommentDetail'
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CommentDetail'
+          description: ''
+      tags:
+      - api
+    patch:
+      operationId: partialUpdateComment
+      description: detajet , fshirja e komentit
+      parameters:
+      - name: article_pk
+        in: path
+        required: true
+        description: ''
+        schema:
+          type: string
+      - name: id
+        in: path
+        required: true
+        description: A unique integer value identifying this comment.
+        schema:
+          type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CommentDetail'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/CommentDetail'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/CommentDetail'
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CommentDetail'
+          description: ''
+      tags:
+      - api
+    delete:
+      operationId: destroyComment
+      description: detajet , fshirja e komentit
+      parameters:
+      - name: article_pk
+        in: path
+        required: true
+        description: ''
+        schema:
+          type: string
+      - name: id
+        in: path
+        required: true
+        description: A unique integer value identifying this comment.
+        schema:
+          type: string
+      responses:
+        '204':
+          description: ''
+      tags:
+      - api
+  /api/articleapp/comments/{id}/:
+    get:
+      operationId: retrieveComment
+      description: detajet , fshirja e komentit
+      parameters:
+      - name: id
+        in: path
+        required: true
+        description: A unique integer value identifying this comment.
+        schema:
+          type: string
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CommentDetail'
+          description: ''
+      tags:
+      - api
+    put:
+      operationId: updateComment
+      description: detajet , fshirja e komentit
+      parameters:
+      - name: id
+        in: path
+        required: true
+        description: A unique integer value identifying this comment.
+        schema:
+          type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CommentDetail'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/CommentDetail'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/CommentDetail'
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CommentDetail'
+          description: ''
+      tags:
+      - api
+    patch:
+      operationId: partialUpdateComment
+      description: detajet , fshirja e komentit
+      parameters:
+      - name: id
+        in: path
+        required: true
+        description: A unique integer value identifying this comment.
+        schema:
+          type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CommentDetail'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/CommentDetail'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/CommentDetail'
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CommentDetail'
+          description: ''
+      tags:
+      - api
+    delete:
+      operationId: destroyComment
+      description: detajet , fshirja e komentit
+      parameters:
+      - name: id
+        in: path
+        required: true
+        description: A unique integer value identifying this comment.
+        schema:
+          type: string
+      responses:
+        '204':
+          description: ''
+      tags:
+      - api
+  /api2/articleapp/artikull/:
+    get:
+      operationId: listArticles
+      description: ''
+      parameters:
+      - name: page
+        required: false
+        in: query
+        description: A page number within the paginated result set.
+        schema:
+          type: integer
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  count:
+                    type: integer
+                    example: 123
+                  next:
+                    type: string
+                    nullable: true
+                    format: uri
+                    example: http://api.example.org/accounts/?page=4
+                  previous:
+                    type: string
+                    nullable: true
+                    format: uri
+                    example: http://api.example.org/accounts/?page=2
+                  results:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/ArticleList'
+          description: ''
+      tags:
+      - api2
+    post:
+      operationId: createArticle
+      description: ''
+      parameters: []
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ArticleList'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/ArticleList'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/ArticleList'
+      responses:
+        '201':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ArticleList'
+          description: ''
+      tags:
+      - api2
+  /api2/articleapp/artikull/{id}/:
+    get:
+      operationId: retrieveArticle
+      description: ''
+      parameters:
+      - name: id
+        in: path
+        required: true
+        description: A unique integer value identifying this article.
+        schema:
+          type: string
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Article'
+          description: ''
+      tags:
+      - api2
+    put:
+      operationId: updateArticle
+      description: ''
+      parameters:
+      - name: id
+        in: path
+        required: true
+        description: A unique integer value identifying this article.
+        schema:
+          type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Article'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/Article'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/Article'
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Article'
+          description: ''
+      tags:
+      - api2
+    patch:
+      operationId: partialUpdateArticle
+      description: ''
+      parameters:
+      - name: id
+        in: path
+        required: true
+        description: A unique integer value identifying this article.
+        schema:
+          type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Article'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/Article'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/Article'
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Article'
+          description: ''
+      tags:
+      - api2
+    delete:
+      operationId: destroyArticle
+      description: ''
+      parameters:
+      - name: id
+        in: path
+        required: true
+        description: A unique integer value identifying this article.
+        schema:
+          type: string
+      responses:
+        '204':
+          description: ''
+      tags:
+      - api2
+components:
+  schemas:
+    ArticleList:
+      type: object
+      properties:
+        id:
+          type: integer
+          readOnly: true
+        title:
+          type: string
+          maxLength: 100
+        content:
+          type: string
+        author:
+          type: integer
+          nullable: true
+        image:
+          type: string
+          format: binary
+          nullable: true
+        create_date:
+          type: string
+          format: date-time
+          readOnly: true
+        total_liked:
+          type: string
+          readOnly: true
+        total_comments:
+          type: string
+          readOnly: true
+      required:
+      - title
+    Article:
+      type: object
+      properties:
+        id:
+          type: integer
+          readOnly: true
+        title:
+          type: string
+          maxLength: 100
+        content:
+          type: string
+        author:
+          type: integer
+          nullable: true
+        image:
+          type: string
+          readOnly: true
+        create_date:
+          type: string
+          format: date-time
+          readOnly: true
+        liked:
+          type: array
+          items:
+            type: object
+            properties:
+              name:
+                type: string
+                maxLength: 100
+            required:
+            - name
+          readOnly: true
+        comments:
+          type: string
+          readOnly: true
+      required:
+      - title
+    CommentList:
+      type: object
+      properties:
+        id:
+          type: integer
+          readOnly: true
+        author:
+          type: string
+          readOnly: true
+        content:
+          type: string
+        create_date:
+          type: string
+          format: date-time
+          readOnly: true
+        article:
+          type: integer
+          nullable: true
+        parent:
+          type: integer
+          nullable: true
+        reply_count:
+          type: string
+          readOnly: true
+    CommentDetail:
+      type: object
+      properties:
+        id:
+          type: integer
+          readOnly: true
+        author:
+          type: string
+          readOnly: true
+        content:
+          type: string
+        create_date:
+          type: string
+          format: date-time
+          readOnly: true
+        replies:
+          type: string
+          readOnly: true
+        parent:
+          type: string
+          readOnly: true
