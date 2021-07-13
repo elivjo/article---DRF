@@ -3,6 +3,12 @@ info:
   title: Article API
   version: 1.0.0
   description: "API for all things \u2026"
+  x-tagGroups:
+  - name: Article
+    tags:
+      - Articles
+      - Comments
+
 paths:
   /api/articleapp/articles/:
     get:
