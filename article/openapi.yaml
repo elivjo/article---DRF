@@ -6,9 +6,8 @@ info:
   x-tagGroups:
   - name: Article
     tags:
-      - articles
-      - comments
-
+      - api
+      - api2
 paths:
   /api/articleapp/articles/:
     get:
